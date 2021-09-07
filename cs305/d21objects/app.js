@@ -21,10 +21,56 @@ function showTitles() {
   titles.sort();
   const titleString = titles.join("\n");
 
-  let textArea = document.getElementById("displayArea");
+  let textArea = document.getElementById("displayAreaTitle");
   textArea.innerHTML = titleString;
 }
+/**
+ *@returns {undefined}
+ */
+function scramble() {
+  const title = findTitles();
+  let allWords = [];
+  for (let oneTitle of title) {
+    const titleArray = oneTitle.split(" ");
+    for (let words of titleArray) {
+      allWords.push(words);
+    }
+  }
 
+  const asc = allWords.sort((aaa, bbb) => aaa.length - bbb.length);
+  let str = asc[0];
+  for (let i = 1; i < asc.length; i++) {
+    if (asc[i - 1].length === asc[i].length) {
+      str += " " + asc[i];
+    } else {
+      str += "\n" + asc[i];
+    }
+  }
+  let textArea = document.getElementById("displayScrumble");
+  textArea.innerHTML = str;
+}
+/**
+ *@returns {undefined}
+ */
+function showIds() {
+  const ids = findIDs();
+  ids.sort();
+  const idsString = ids.join("\n");
+
+  let textArea = document.getElementById("displayAreaId");
+  textArea.innerHTML = idsString;
+}
+/**
+ *@returns {undefined}
+ */
+function showAuthors() {
+  const authors = findAuthors();
+  authors.sort();
+  const authorsString = authors.join("\n");
+
+  let textArea = document.getElementById("displayAreaAuthor");
+  textArea.innerHTML = authorsString;
+}
 /**
  *
  * @return {object} array holding all titles as elements
@@ -83,9 +129,9 @@ function addBook(title, author, libraryID) {
  * @returns {Object} new Book
  */
 function addBookToLibrary() {
-  const title = document.getElementById("title"); //retrieves the book title from the title
-  const libraryID = document.getElementById("libraryID");
-  const author = document.getElementById("author");
+  const title = document.getElementById("title").value; //retrieves the book title from the title
+  const libraryID = document.getElementById("libraryID").value;
+  const author = document.getElementById("author").value;
 
   const newBook = {};
   newBook.author = author;
@@ -93,8 +139,7 @@ function addBookToLibrary() {
   newBook.title = title;
   library.push(newBook); //finish the implementation -- get the author, create a book object, and add to the library array
 
-  const bookString = newBook.join("\n");
-
-  let textArea = document.getElementById("displayArea");
-  textArea.innerHTML = bookString;
+  document.getElementById(
+    "displayAreaTitle"
+  ).innerHTML = `${newBook.title}\n${newBook.author}\n${newBook.libraryID}`;
 }
