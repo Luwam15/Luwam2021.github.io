@@ -1,6 +1,6 @@
 "use strict";
 /* You need the module.exports when testing in node.  Comment it out when you send your file to the browser */
-module.exports = { findTitles, addBook, findIDs, findAuthors }; //add all of your function names here that you need for the node mocha tests
+//module.exports = { findTitles, addBook, findIDs, findAuthors }; //add all of your function names here that you need for the node mocha tests
 
 let library = [
   { title: "The Road Ahead", author: "Bill Gates", libraryID: 1254 },
@@ -17,11 +17,7 @@ let library = [
  * @returns {undefined}
  */
 function showTitles() {
-  /* put all titles into an array, then sort, then join with newline and insert in textarea innerHTML */
-
   const titles = findTitles();
-
-  /*need to sort and then join the titles still (e.g., someArray.join("\n")  */
   titles.sort();
   const titleString = titles.join("\n");
 
@@ -45,7 +41,7 @@ function findTitles() {
 }
 /**
  *
- * @returns
+ * @returns{Array} ids
  */
 function findIDs() {
   let ids = [];
@@ -57,7 +53,7 @@ function findIDs() {
 }
 /**
  *
- * @returns
+ * @returns{Array} Authors
  */
 function findAuthors() {
   let authors = [];
@@ -68,13 +64,30 @@ function findAuthors() {
   return authors;
 }
 /**
- * @returns {undefined} no return
- * Event handler for Add book button.  Creates and adds book to the library
+ *
+ * @param {String} title the title
+ * @param {String} author the author
+ * @param {Number} libraryID id of the book
+ * @returns {Object} new book
  */
 function addBook(title, author, libraryID) {
-  // const title = document.getElementById("title"); //retrieves the book title from the title textbox
-  // const libraryID = document.getElementById("libraryID");
-  // const author = document.getElementById("author");
+  const newBook = {};
+  newBook.author = author;
+  newBook.libraryID = libraryID;
+  newBook.title = title;
+  library.push(newBook); //finish the implementation -- get the author, create a book object, and add to the library array
+  return newBook;
+}
+/**
+ *
+ * @returns {Object} new Book
+ */
+function addBookToLibrary() {
+  const title = document.getElementById("title"); //retrieves the book title from the title
+  let textArea = document.getElementById("displayArea");
+  textArea.innerHTML = document.getElementById("title");
+  const libraryID = document.getElementById("libraryID");
+  const author = document.getElementById("author");
 
   const newBook = {};
   newBook.author = author;
