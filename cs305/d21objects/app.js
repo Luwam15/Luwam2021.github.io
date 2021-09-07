@@ -84,8 +84,6 @@ function addBook(title, author, libraryID) {
  */
 function addBookToLibrary() {
   const title = document.getElementById("title"); //retrieves the book title from the title
-  let textArea = document.getElementById("displayArea");
-  textArea.innerHTML = document.getElementById("title");
   const libraryID = document.getElementById("libraryID");
   const author = document.getElementById("author");
 
@@ -94,5 +92,9 @@ function addBookToLibrary() {
   newBook.libraryID = libraryID;
   newBook.title = title;
   library.push(newBook); //finish the implementation -- get the author, create a book object, and add to the library array
-  return newBook;
+
+  const bookString = newBook.join("\n");
+
+  let textArea = document.getElementById("displayArea");
+  textArea.innerHTML = bookString;
 }
