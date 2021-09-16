@@ -1,4 +1,3 @@
-/*eslint-disable*/
 "use strict";
 
 const { log } = require("console");
@@ -21,7 +20,11 @@ const lisa = new TreeNode("Lisa");
 const maggie = new TreeNode("Maggie");
 abe.descendents.push(homer);
 homer.descendents.push(bart, lisa, maggie);
-
+/**
+ *
+ * @param {object} root to iterate its names
+ * @returns {undefined}
+ */
 function logNames(root) {
   console.log(root.value);
   if (root.descendents.length != 0) {
@@ -30,7 +33,12 @@ function logNames(root) {
     }
   }
 }
-//logNames(abe);
+/**
+ *
+ * @param {object} tree the node to be searched in
+ * @param {string} name the name to be searched
+ * @returns{boolean} true or false
+ */
 function contains(tree, name) {
   if (tree.value == name) return true;
   if (tree.descendents && tree.descendents.length > 0) {
@@ -44,13 +52,11 @@ function contains(tree, name) {
 }
 
 /**
- * Given a target value, return the subtree
- * with the found node or null if no match. Extend the
-tree to have a more interesting test. Create a
-mocha test to run at least 2 or 3 tests on your tree.
-findSubtree(tree, “Homer”) → subtree with Homer
- as the root
-*/
+ *
+ * @param {object} tree to be searched in
+ * @param {string} value the subTree with this string to be searched
+ * @returns{object} the subtree containing the value
+ */
 function findSubTree(tree, value) {
   if (tree.value == value) return tree;
   else if (tree.descendents != 0) {
@@ -62,20 +68,23 @@ function findSubTree(tree, value) {
   }
   return null;
 }
-// let result = findSubTree(abe, "Homer");
-// logNames(result);
+
 function ListNode(node, next) {
   this.node = node;
   this.next = next;
 }
+
 let listNode = new ListNode("abe.value");
 let maggieNode = new ListNode("maggie.value", null);
 let lisaNode = new ListNode("lisa.value", maggieNode);
 let bartNode = new ListNode("bart.value", lisaNode);
 let homerNode = new ListNode("homer.value", bartNode);
 let abeNode = new ListNode("abe.value", homerNode);
-
-function createList(abe) {
+/**
+ *prints out new created list of simpsons
+ *@returns {undefined}
+ */
+function createList() {
   let listNode = new ListNode(abe.value);
   listNode.next = new ListNode(homer.value);
   listNode.next.next = new ListNode(bart.value);
@@ -84,14 +93,12 @@ function createList(abe) {
   console.log(JSON.stringify(listNode));
 }
 
-// createList(abe);
-
 /**
- *  Given a target value in the list, return the node 
- * that contains the target value or null if no match.
-    findListNode(list, “Bart”)
+ *
+ * @param {object} list the node to be searched in
+ * @param {object} target the node to be searched
+ * @returns {object} the node containing it
  */
-
 function findListNode(list, target) {
   if (list.node == target) return list;
   if (list.next == null) return null;
@@ -99,28 +106,36 @@ function findListNode(list, target) {
 }
 
 /**
- * • allCaps(node) will change the value of a node to be all
- *  caps. 
-• addStars(node) will change the value to have *** in front 
-and behind the node value.
-• reverseNode(node) will reverse the string of the node
- value. Abe -> ebA
-Call your recursive function with each of these modifier 
-functions.
+ *
+ * @param {object} node to be capitalized
+ * @returns{undefined}
  */
 function allCaps(node) {
   node.value = node.value.toUpperCase();
 }
+/**
+ *
+ * @param {object} node its value to be added with *** before and after
+ */
 function addStars(node) {
   node.value = "***" + node.value + "***";
 }
+/**
+ *
+ * @param {object} node itsvalue to be reversed
+ * @returns {undefined}
+ */
 function reverseNode(node) {
   let temp = [...node.value];
   let a = temp.reverse();
   let b = a.join("");
   node.value = b;
 }
-
+/**
+ *
+ * @param {object} tree the tree nodes to be modified by the passed function
+ * @param {object} modiferFunc the function to modify the passed tree
+ */
 function treeModifier(tree, modiferFunc) {
   modiferFunc(tree);
   if (tree.descendents.length != 0) {
@@ -128,6 +143,11 @@ function treeModifier(tree, modiferFunc) {
   }
 }
 let accomulatedName = [];
+/**
+ *
+ * @param {object} tree its nodes name to be collected
+ * @returns{object} accomulatedName the accomulated names
+ */
 function treeCollector(tree) {
   accomulatedName.push(tree.value);
   if (tree.descendents.length > 0) {
@@ -136,15 +156,28 @@ function treeCollector(tree) {
     }
   }
 }
-
+/**
+ *
+ * @param {object} arr the array to be copied
+ * @returns {object} new clone array
+ */
 function copyArray(arr) {
   return [...arr];
 }
-
+/**
+ *
+ * @param {object} arr1 the first array to be copied
+ * @param {object} arr2 the second array to be copied
+ * @returns {object} new array of the two
+ */
 function concat(arr1, arr2) {
   return [...arr1, ...arr2];
 }
-
+/**
+ *
+ * @param  {...any} numbers the argument to be
+ * @returns {number } minimum of all
+ */
 function findMin(...numbers) {
   let min = Number.MAX_VALUE;
   for (let num of numbers) {
@@ -152,7 +185,12 @@ function findMin(...numbers) {
   }
   return min;
 }
-
+/**
+ *
+ * @param {object} obj1 the firt object to be copied
+ * @param {object} obj2 the second object to be copied
+ * @returns {object} new combination object
+ */
 function combineObjs(obj1, obj2) {
   let newObj = {
     ...obj1,
