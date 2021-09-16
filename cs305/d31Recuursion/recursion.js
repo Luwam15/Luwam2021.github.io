@@ -11,7 +11,7 @@ module.exports = {
   fibonacci,
   outputList,
   outputListLoop,
-  // reverseList,
+  reverseList,
   // reverseListLoop,
 }; //add all of your function names here that you need for the node mocha tests
 /**
@@ -128,14 +128,14 @@ let node1 = {
   value: null,
 };
 
-function findNamesRec(node, result) {
+function reverseList(node, result) {
   //let result = [];
   if (node.children == null) {
-    result.push(`${node.name}: ${node.value}`);
+    result.unshift(`${node.name}: ${node.value}`);
   } else {
-    result.push(`${node.name}: ${node.value}`);
+    result.unshift(`${node.name}: ${node.value}`);
     for (let i = 0; i < node.children.length; i++) {
-      findNamesRec(node.children[i], result);
+      reverseList(node.children[i], result);
     }
   }
   return result;
@@ -167,6 +167,7 @@ function logNameValueIter(node) {
     }
   }
 }
+
 function findNameValueIter(node) {
   let result = [];
   result.push(`${node.name}: ${node.value}`);
@@ -186,10 +187,10 @@ function findNameValueIter(node) {
   return result;
 }
 
-console.log("===============");
-logNameValueRec(node1);
-console.log("===============");
-logNameValueIter(node1);
-console.log("===============");
-console.log(findNameValueIter(node1));
-console.log(findNamesRec(node1, []));
+// console.log("===============");
+// logNameValueRec(node1);
+// console.log("===============");
+// logNameValueIter(node1);
+// console.log("===============");
+// console.log(findNameValueIter(node1));
+// console.log(findNamesRec(node1, []));
