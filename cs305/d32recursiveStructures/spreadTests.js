@@ -6,7 +6,7 @@ const myExports = require("./spread.js"); //with node need the name of your file
 const copyArray = myExports.copyArray; //do this for all of the functions used in the Mocha tests
 const concat = myExports.concat;
 const findMin = myExports.findMin;
-//const combineObjs = myExports.combineObjs;
+const combineObjs = myExports.combineObjs;
 
 /*
 a)	Copy an array
@@ -22,7 +22,7 @@ describe("spread operator tests", function () {
     const oldArr = [1, 2, 3];
     const newArr = copyArray(oldArr);
     assert.deepEqual(newArr, oldArr);
-    oldArr.push[4];
+    newArr.push(4);
     assert.deepEqual(oldArr, [1, 2, 3]);
   });
 
@@ -39,15 +39,15 @@ describe("spread operator tests", function () {
     assert.strictEqual(findMin(...arr2), 0);
   });
 
-  //   it("tests combine objects", function () {
-  //     const obj1 = { prop1: 1, prop2: 2 };
-  //     const obj2 = { prop3: 1, prop4: 2 };
+  it("tests combine objects", function () {
+    const obj1 = { prop1: 1, prop2: 2 };
+    const obj2 = { prop3: 1, prop4: 2 };
 
-  //     assert.deepEqual(combineObjs(obj1, obj2), {
-  //       prop1: 1,
-  //       prop2: 2,
-  //       prop3: 1,
-  //       prop4: 2,
-  //     });
-  //   });
+    assert.deepEqual(combineObjs(obj1, obj2), {
+      prop1: 1,
+      prop2: 2,
+      prop3: 1,
+      prop4: 2,
+    });
+  });
 });
