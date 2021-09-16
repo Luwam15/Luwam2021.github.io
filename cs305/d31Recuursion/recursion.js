@@ -1,5 +1,4 @@
 "use strict";
-/*eslint-disable*/
 const { log } = require("console");
 
 /* global exports */
@@ -12,7 +11,7 @@ module.exports = {
   outputList,
   outputListLoop,
   reverseList,
-  // reverseListLoop,
+  reverseListLoop,
 }; //add all of your function names here that you need for the node mocha tests
 /**
  *
@@ -42,6 +41,11 @@ function fibonacci(num) {
   if (num === 1 || num === 2) return 1;
   else return fibonacci(num - 1) + fibonacci(num - 2);
 }
+/**
+ *
+ * @param {object} list  the node to be iterated from
+ * @returns {undefined}
+ */
 function outputList(list) {
   if (list.next == null) {
     console.log(list.value);
@@ -50,12 +54,20 @@ function outputList(list) {
     outputList(list.next);
   }
 }
+/**
+ * @param {object} list  the node to be iterated from
+ * @returns {undefined}
+ */
 function outputListLoop(list) {
   while (list != null) {
     console.log(list.value);
     list = list.next;
   }
 }
+/**
+ *  @param {object} list  the node to be iterated from
+ * @returns {undefined}
+ */
 function reverseList(list) {
   if (list.next == null) console.log(list.value);
   else {
@@ -63,6 +75,10 @@ function reverseList(list) {
     console.log(list.value);
   }
 }
+/**
+ *  @param {object} list  the node to be iterated from
+ * @returns {undefined}
+ */
 function reverseListLoop(list) {
   if (list.next != null) {
     let list1 = list.next;
@@ -96,12 +112,6 @@ let list = {
   },
 };
 
-// outputList(list);
-// outputListLoop(list);
-// reverseList(list);
-
-// reverseListLoop(list);
-
 let node3 = {
   name: "p",
   value: "This is text in the a paragraph",
@@ -127,19 +137,29 @@ let node1 = {
   children: [node2, node3],
   value: null,
 };
-
-function reverseList(node, result) {
-  //let result = [];
+let result = [];
+/**
+ *
+ * @param {object} node the node whose name and
+ * childrens name to be returned
+ * @returns{object} array of names
+ */
+function returnReverseList(node) {
   if (node.children == null) {
     result.unshift(`${node.name}: ${node.value}`);
   } else {
     result.unshift(`${node.name}: ${node.value}`);
     for (let i = 0; i < node.children.length; i++) {
-      reverseList(node.children[i], result);
+      returnReverseList(node.children[i], result);
     }
   }
   return result;
 }
+/**
+ *
+ * @param {object} node whose name to be printed
+ * @returns{undefined}
+ */
 function logNameValueRec(node) {
   if (node.children == null) {
     console.log(`${node.name}: ${node.value}`);
@@ -150,7 +170,11 @@ function logNameValueRec(node) {
     }
   }
 }
-
+/**
+ *
+ * @param {object} node whose name and values to be printed
+ * @returns {undefined}
+ */
 function logNameValueIter(node) {
   console.log(`${node.name}: ${node.value}`);
   if (node.children != null) {
@@ -167,30 +191,26 @@ function logNameValueIter(node) {
     }
   }
 }
-
+let result2 = [];
+/**
+ *
+ * @param {object} node whose name and values to be returned in and array
+ * @returns {object} array of names
+ */
 function findNameValueIter(node) {
-  let result = [];
-  result.push(`${node.name}: ${node.value}`);
+  result2.push(`${node.name}: ${node.value}`);
   if (node.children != null) {
     for (let i = 0; i < node.children.length; i++) {
       let node2 = node.children[i];
-      result.push(`${node2.name}: ${node2.value}`);
+      result2.push(`${node2.name}: ${node2.value}`);
 
       if (node2.children != null) {
         for (let i = 0; i < node2.children.length; i++) {
           let node3 = node2.children[i];
-          result.push(`${node3.name}: ${node3.value}`);
+          result2.push(`${node3.name}: ${node3.value}`);
         }
       }
     }
   }
   return result;
 }
-
-// console.log("===============");
-// logNameValueRec(node1);
-// console.log("===============");
-// logNameValueIter(node1);
-// console.log("===============");
-// console.log(findNameValueIter(node1));
-// console.log(findNamesRec(node1, []));
