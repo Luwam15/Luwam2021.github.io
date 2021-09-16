@@ -7,8 +7,8 @@ const { log } = require("console");
 
 // /* You need the module.exports when testing in node.  Comment it out when you send your file to the browser
 //  */
-module.exports = { copyArray, concat, findMin }; //add all of your function names here that you need for the node mocha tests
-//combineObjs
+module.exports = { copyArray, concat, findMin, combineObjs }; //add all of your function names here that you need for the node mocha tests
+//
 function TreeNode(value) {
   this.value = value;
   this.descendents = [];
@@ -42,7 +42,6 @@ function contains(tree, name) {
   }
   return false;
 }
-//console.log(contains(abe, "list"));
 
 /**
  * Given a target value, return the subtree
@@ -139,8 +138,7 @@ function treeCollector(tree) {
 }
 
 function copyArray(arr) {
-  let res = [...arr];
-  return res;
+  return [...arr];
 }
 
 function concat(arr1, arr2) {
@@ -149,16 +147,16 @@ function concat(arr1, arr2) {
 
 function findMin(...numbers) {
   let min = Number.MAX_VALUE;
-  for (let i = 0; i < numbers.length; i++) {
-    for(let j=0;j<numbers[i].length;j++){
-        if()
-    }
+  for (let num of numbers) {
+    if (num < min) min = num;
   }
-  //   for (let num of numbers) {
-  //     if (num < min) min = num;
-  //   }
-  //   return min;
+  return min;
 }
-let arr = [1, 2, 3];
-console.log(findMin(arr));
-// function combineObjs(obj1, obj2) {}
+
+function combineObjs(obj1, obj2) {
+  let newObj = {
+    ...obj1,
+    ...obj2,
+  };
+  return newObj;
+}
