@@ -53,21 +53,10 @@ describe("recursion tests", function () {
   //   assert.strictEqual(outputListLoop(list), "1 2 3 4 printed to console");
   // });
 
-  it("recursive version prints 4 3 2 1 to console", function () {
-    assert.deepEqual(reverseList(list, []), [4, 3, 2, 1]);
-  });
+  // it("recursive version prints 4 3 2 1 to console", function () {
+  //   assert.deepEqual(reverseList(list), [4, 3, 2, 1]);
+  // });
   // it("loop version prints 4 3 2 1 to console", function () {
   //   assert.strictEqual(reverseListLoop(list), "4 3 2 1 printed to console");
   // });
 });
-// function namesValueRec(node) {
-//   if (node.children == null) {
-//     console.log(`${node.name}: ${node.value}`);
-//   } else {
-//     console.log(`${node.name}: ${node.value}`);
-//     for (let i = 0; i < node.children.length; i++) {
-//       findNames(node.children[i]);
-//     }
-//   }
-// }
-// console.log(namesValueRec(node1));
