@@ -15,17 +15,34 @@ function doubleNums(arr) {
 }
 
 function doubleAges(arr) {
-
+  let newArr = arr.map(function (person) {
+    let newPerson = person;
+    newPerson.age = person.age * 2;
+    return newPerson;
+  });
+  return newArr;
 }
 
-function filterEven(arr) {}
+function filterEven(arr) {
+  return arr.filter((item) => item % 2 === 0);
+}
 
-function filterOver10(arr) {}
+function filterOver10(arr) {
+  return arr.filter((person) => person.age > 10);
+}
 
-function findEvenNum(arr) {}
+function findEvenNum(arr) {
+  return arr.find((item) => item % 2 === 0);
+}
 
-function findEvenAge(arr) {}
+function findEvenAge(arr) {
+  arr.find((person) => person.age % 2 === 0);
+}
 
-function includesEvenNum(arr) {}
+function includesEvenNum(arr) {
+  return arr.includes((item) => item % 2 === 0);
+}
 
-function includesEvenAge(arr) {}
+function includesEvenAge(arr) {
+  return arr.includes((person) => person.age % 2 === 0);
+}
