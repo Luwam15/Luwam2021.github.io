@@ -95,5 +95,13 @@ describe("filter practice", function () {
   });
 
   /* complete the following similar to includes even test */
-  it("includes even age -- write this test");
+  it("includes even age -- write this test", function () {
+    const peoplesAge = [];
+    for (let people of peopleArray) {
+      peoplesAge.push(people.age);
+    }
+
+    assert.strictEqual(peoplesAge.includes(13), true);
+    assert.strictEqual(peoplesAge.includes(77), false);
+  });
 });
