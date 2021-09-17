@@ -29,7 +29,7 @@ function inArray(arr) {
  */
 function inBetween(low, high) {
   return function (num) {
-    if (num < high && num > low) {
+    if (num <= high && num >= low) {
       return true;
     }
     return false;
