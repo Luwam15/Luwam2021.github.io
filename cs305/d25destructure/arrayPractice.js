@@ -15,12 +15,7 @@ function doubleNums(arr) {
 }
 
 function doubleAges(arr) {
-  let newArr = arr.map(function (person) {
-    let newPerson = person;
-    newPerson.age = person.age * 2;
-    return newPerson;
-  });
-  return newArr;
+  return arr.map((person) => ({ name: person.name, age: person.age * 2 }));
 }
 
 function filterEven(arr) {
@@ -36,13 +31,15 @@ function findEvenNum(arr) {
 }
 
 function findEvenAge(arr) {
-  arr.find((person) => person.age % 2 === 0);
+  return arr.find((person) => person.age % 2 === 0);
 }
 
 function includesEvenNum(arr) {
-  return arr.includes((item) => item % 2 === 0);
+  arr.includes((item) => item % 2 === 0);
 }
 
 function includesEvenAge(arr) {
-  return arr.includes((person) => person.age % 2 === 0);
+  let evenAge = arr.includes((person) => person.age % 2 === 0);
+  if (evenAge != undefined) return true;
+  return false;
 }
